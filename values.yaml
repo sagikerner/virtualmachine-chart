@@ -1,0 +1,33 @@
+# Default values for virtualmachine.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+nameOverride: ""
+fullnameOverride: ""
+
+nodeSelector: ''
+
+vm:
+  name: 'my-vm'
+  az: 'az-a'
+  ssh_authorized_keys: ''
+  spec:
+    dataVolumeTemplates: 
+      resources:
+        storage: '15Gi'
+    template:
+      spec:
+        resources:
+          limits:
+            cpu: '1'
+            memory: '2Gi'
+          requests:
+            cpu: '250m'
+            memory: '2Gi'
+
+service:
+  type: LoadBalancer
+  ports:
+    - name: ssh
+      port: 22
+      targetPort: 22
